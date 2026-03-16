@@ -19,10 +19,10 @@
 
     <!-- This is honored when the compiler used for the build is Java9+. Using it avoids
            this JDK API issue:  https://www.morling.dev/blog/bytebuffer-and-the-dreaded-nosuchmethoderror/  -->
-    <maven.compiler.release>8</maven.compiler.release>
-    <jdk.source.version>8</jdk.source.version>
+    <maven.compiler.release>11</maven.compiler.release>
+    <jdk.source.version>11</jdk.source.version>
     <!-- The below does not take into account API changes as "maven.compiler.release" does. -->
-    <jdk.target.version>8</jdk.target.version>
+    <jdk.target.version>11</jdk.target.version>
   </properties>
 
   <dependencies>
