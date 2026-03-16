@@ -19,7 +19,7 @@ public final class TextPlugin implements Plugin {
     context.addExtensions(
         PropertyDefinition.builder(TextPlugin.FILE_SUFFIXES_KEY)
             .name("File suffixes")
-            .description("List of suffixes of files to analyze.")
+            .description("List of suffixes of files that trigger automatic activation of this plugin for projects (with default quality profile).<br><br>Note: All files in projects are available to this plugin.<br><br>Note: Must not use file suffixes used by other plugins.")
             .defaultValue(TextPlugin.FILE_SUFFIXES_DEFAULT_VALUE)
             .multiValues(true)
             .category(TextPlugin.NAME)
