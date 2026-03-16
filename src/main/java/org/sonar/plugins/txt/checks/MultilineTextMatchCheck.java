@@ -14,10 +14,10 @@ import org.sonar.plugins.txt.checks.util.LineNumberFinderUtil;
       description = "Multiline (Java Match.DOTALL) regular expression matcher. Scans only text files containing less than " + (MultilineTextMatchCheck.MAX_CHARACTERS_SCANNED-1) + " characters. Note that ^ and $ character matching is to beginning and end of file UNLESS you start your expression with (?m).",
       tags = { "bad-practice" })
 public class MultilineTextMatchCheck extends AbstractTextCheck {
-  @RuleProperty(key = "regularExpression", type = "TEXT", defaultValue = "(?m)^some.*regex search string\\. dot matches all$")
+  @RuleProperty(key = "regularExpression", type = "TEXT", defaultValue = EXPRESSION_MULTILINE_DEFAULT)
   private String searchRegularExpression;
 
-  @RuleProperty(key = "filePattern", defaultValue = FILEPATTERN_DEFAULT, description = "Ant Style path expression. To include all of the files in this project use '**/*'. \n\nFiles scanned will be limited by the list of file extensions configured for this language AND by the values of 'sonar.sources' and 'sonar.exclusions'. Also, using just 'filename.txt' here to point the rule to a file at the root of the project does not appear to work (as of SQ v4.5.5). Use '**/filename.txt' instead.")
+  @RuleProperty(key = "filePattern", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String filePattern = FILEPATTERN_DEFAULT;
 
   @RuleProperty(key = "message", description = MESSAGE_DESCRIPTION)
