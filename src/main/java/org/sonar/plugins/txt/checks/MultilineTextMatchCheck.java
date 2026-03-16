@@ -17,10 +17,10 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
   @RuleProperty(key = "regularExpression", type = "TEXT", defaultValue = EXPRESSION_MULTILINE_DEFAULT)
   private String searchRegularExpression;
 
-  @RuleProperty(key = "filePattern", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
+  @RuleProperty(key = "filePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String filePattern = FILEPATTERN_DEFAULT;
 
-  @RuleProperty(key = "message", description = MESSAGE_DESCRIPTION)
+  @RuleProperty(key = "message", type = "TEXT", description = MESSAGE_DESCRIPTION)
   private String message = MESSAGE_DEFAULT;
 
   public String getExpression() {

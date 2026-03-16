@@ -14,7 +14,7 @@ public abstract class AbstractTextCheck {
   protected static final String EXPRESSION_MULTILINE_DEFAULT = "(?m)^some.*regex search string\\. dot matches all$";
 
   protected static final String FILEPATTERN_DEFAULT = "**/*";
-  protected static final String FILEPATTERN_DESCRIPTION = "Ant Style path expression. To include all of the files in this project use '**/*'. \n\nFiles scanned will be limited by the list of file extensions configured for this language AND by the values of 'sonar.sources' and 'sonar.exclusions'. Also, using just 'filename.txt' here to point the rule to a file at the root of the project does not appear to work (as of SQ v4.5.5). Use '**/filename.txt' instead.";
+  protected static final String FILEPATTERN_DESCRIPTION = "Ant Style path expression. To include all of the files in this project use '***/**'. \n\nFiles scanned will be limited by the list of file extensions configured for this language AND by the values of 'sonar.sources' and 'sonar.exclusions'. Also, using just 'filename.txt' here to point the rule to a file at the root of the project does not appear to work (as of SQ v4.5.5). Use '**/filename.txt' instead.";
 
   protected static final String MESSAGE_DEFAULT = "";
   protected static final String MESSAGE_DESCRIPTION = "Reason explaining why this text has been matched.";
@@ -22,10 +22,10 @@ public abstract class AbstractTextCheck {
   private RuleKey ruleKey;
   private TextSourceFile textSourceFile;
 
-  @RuleProperty(key = "doNotFireForTheseProjectKeys", type = "TEXT", description = "Use to exclude certain projects from this rule. Sample RegEx patterns: '^someMavenGroupIdPrefix' or 'someArtifactIdEndingDenotingSpecialProjectsToBeExcludedFromRule$'")
+  @RuleProperty(key = "doNotFireForTheseProjectKeys", type = "TEXT", description = "Use to exclude certain projects from this rule.\n\nSample RegEx patterns: '^someMavenGroupIdPrefix' or 'someArtifactIdEndingDenotingSpecialProjectsToBeExcludedFromRule$'")
   private String doNotFireForProjectKeysRegex;
 
-  @RuleProperty(key = "doNotFireForTheseFileNames", type = "TEXT", description = "Use to exclude certain file names from this rule. Sample RegEx pattern: '^(local\\.properties|README.txt)$'")
+  @RuleProperty(key = "doNotFireForTheseFileNames", type = "TEXT", description = "Use to exclude certain file names from this rule.\n\nSample RegEx pattern: '^(local\\.properties|README.txt)$'")
   private String doNotFireForTheseFileNamesRegex;
 
   protected final void createViolation(final Integer linePosition, final String message) {

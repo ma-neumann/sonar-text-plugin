@@ -26,10 +26,10 @@ public class RequiredStringNotPresentCheck extends AbstractTextCheck {
   @RuleProperty(key = "mustExistRegularExpression", type = "TEXT", defaultValue = "(?m)^some.*regex search string$")
   private String mustExistExpression;
 
-  @RuleProperty(key = "filePattern", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
+  @RuleProperty(key = "filePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String filePattern = FILEPATTERN_DEFAULT;
 
-  @RuleProperty(key = "message", description = MESSAGE_DESCRIPTION)
+  @RuleProperty(key = "message", type = "TEXT", description = MESSAGE_DESCRIPTION)
   private String message = MESSAGE_DEFAULT;
 
   public String getExpression() {

@@ -31,19 +31,19 @@ public class MultiFileIfOneStringExistsThenBothMustExistCheck extends AbstractCr
   @RuleProperty(key = "triggerExpression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT)
   private String triggerExpression;
 
-  @RuleProperty(key = "triggerFilePattern", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
+  @RuleProperty(key = "triggerFilePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String triggerFilePattern = FILEPATTERN_DEFAULT;
 
   @RuleProperty(key = "mustAlsoExistExpression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT)
   private String mustAlsoExistExpression;
 
-  @RuleProperty(key = "mustAlsoExistFilePattern", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
+  @RuleProperty(key = "mustAlsoExistFilePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String mustAlsoExistFilePattern = FILEPATTERN_DEFAULT;
 
   @RuleProperty(key = "applyExpressionToOneLineOfTextAtATime", type = "BOOLEAN", defaultValue = "true", description = "Select this to feed the regular expression evaluator one line at a time. Uncheck it if your expression needs to 'see' multiple lines. When not checked only the first " + (MAX_CHARACTERS_SCANNED-1) + " characters of each file will be processed.")
   private boolean applyExpressionToOneLineOfTextAtATime = true;
 
-  @RuleProperty(key = "message", description = MESSAGE_DESCRIPTION)
+  @RuleProperty(key = "message", type = "TEXT", description = MESSAGE_DESCRIPTION)
   private String message = MESSAGE_DEFAULT;
 
   @Override
