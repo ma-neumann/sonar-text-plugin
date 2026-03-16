@@ -6,7 +6,7 @@ import org.sonar.plugins.txt.batch.TextIssueSensor;
 
 public final class TextPlugin implements Plugin {
 
-  public static final String FILE_SUFFIXES_DEFAULT_VALUE = ".properties,.txt";
+  public static final String FILE_SUFFIXES_DEFAULT_VALUE = ".properties,.txt,.md";
   public static final String FILE_SUFFIXES_KEY = "sonar.txt.file.suffixes";
   public static final String REPOSITORY_KEY = "txt";
   public static final String LANGUAGE_KEY = "txt";

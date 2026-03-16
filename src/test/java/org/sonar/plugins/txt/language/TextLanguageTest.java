@@ -45,6 +45,7 @@ public class TextLanguageTest {
 	  System.out.println(Arrays.toString(fileSuffixes));
 	  assertTrue(".properties".equals(fileSuffixes[0]));
 	  assertTrue(".txt".equals(fileSuffixes[1]));
+	  assertTrue(".md".equals(fileSuffixes[2]));
   }
 
   @Test
@@ -57,5 +58,6 @@ public class TextLanguageTest {
 	  System.out.println(Arrays.toString(fileSuffixes));
 	  assertTrue(".properties".equals(fileSuffixes[0]));
 	  assertTrue(".txt".equals(fileSuffixes[1]));
+	  assertTrue(".md".equals(fileSuffixes[2]));
   }
 }
