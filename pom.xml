@@ -11,8 +11,11 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.buildVersion>9.3.0.51899</sonar.buildVersion>
-    <sonarqube.instance.min.version>9.3</sonarqube.instance.min.version>
+
+    <!-- Please see https://github.com/SonarSource/sonar-plugin-api -->
+    <sonarapi.buildVersion>9.4.0.54424</sonarapi.buildVersion>
+    <sonarapi.min.version>9.4</sonarapi.min.version>
+    <sonarqube.buildVersion>9.4.0.54424</sonarqube.buildVersion>
 
     <!-- This is honored when the compiler used for the build is Java9+. Using it avoids
            this JDK API issue:  https://www.morling.dev/blog/bytebuffer-and-the-dreaded-nosuchmethoderror/  -->
@@ -43,7 +46,7 @@
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-plugin-api</artifactId>
-      <version>${sonar.buildVersion}</version>
+      <version>${sonarapi.buildVersion}</version>
       <scope>provided</scope>
     </dependency>
 	<dependency>
@@ -56,14 +59,14 @@
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-plugin-api-impl</artifactId>
-      <version>${sonar.buildVersion}</version>
+      <version>${sonarqube.buildVersion}</version>
       <scope>test</scope>
     </dependency>
     
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-testing-harness</artifactId>
-      <version>${sonar.buildVersion}</version>
+      <version>${sonarqube.buildVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -91,10 +94,10 @@
       <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>1.20.0.405</version>
+        <version>1.25.1.3002</version>
         <extensions>true</extensions>
         <configuration>
-          <sonarQubeMinVersion>${sonarqube.instance.min.version}</sonarQubeMinVersion>
+          <pluginApiMinVersion>${sonarapi.min.version}</pluginApiMinVersion>
           <pluginClass>org.sonar.plugins.txt.TextPlugin</pluginClass>
         </configuration>
       </plugin>
