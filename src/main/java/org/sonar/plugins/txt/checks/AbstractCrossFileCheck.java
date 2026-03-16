@@ -50,7 +50,6 @@ public abstract class AbstractCrossFileCheck extends AbstractTextCheck {
       for (CrossFileScanPrelimIssue currentPrelimIssue : prelimIssues) {
         if (RulePart.TriggerPattern == currentPrelimIssue.getRulePart() && this.getRuleKey().equals(currentPrelimIssue.getRuleKey())) {
           ruleTriggered = true;
-//          System.out.println("Trigger detected during final cross-file processing: " + currentPrelimIssue);
           break;
         }
       }

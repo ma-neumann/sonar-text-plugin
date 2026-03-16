@@ -39,7 +39,6 @@ public class TextRulesDefinition implements RulesDefinition {
       rule.setTemplate(true);
     }
 
-    // Finalize the definition procedure
     repository.done();
   }
 }

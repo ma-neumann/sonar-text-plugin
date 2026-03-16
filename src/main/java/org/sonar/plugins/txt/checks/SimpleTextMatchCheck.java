@@ -12,8 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
@@ -22,7 +20,6 @@ import org.sonar.check.RuleProperty;
       priority = Priority.MAJOR,
       name = "Simple Regex Match", description = "Simple regular expression matcher.")
 public class SimpleTextMatchCheck extends AbstractTextCheck {
-  private static final Logger LOG = LoggerFactory.getLogger(AbstractTextCheck.class);
 
   @RuleProperty(key = "expression", type = "TEXT", defaultValue = "^some single-line.*regex search string$", description = "Don't try to match to newlines (\\r or \\n); consider using the Multiline check type if you have that need. This rule type evaluates your pattern against a single line of text at a time and uses java.io.LineNumberReader.readLine() to obtain that text. That method consumes new line information but does not return it.")
   private String expression;
@@ -61,7 +58,6 @@ public class SimpleTextMatchCheck extends AbstractTextCheck {
   @Override
   public void validate(final TextSourceFile textSourceFile, final String projectKey) {
     setTextSourceFile(textSourceFile);
-//LOG.info("validating");
     if (expression != null &&
         isFileIncluded(filePattern) &&
         shouldFireForProject(projectKey) &&
@@ -81,7 +77,6 @@ public class SimpleTextMatchCheck extends AbstractTextCheck {
     	      while ((line = lineReader.readLine()) != null) {
     	        matcher.reset(line); // Reuse the matcher by discarding its current state and providing new input text
     	        if (matcher.find()) {
-//    	          System.out.println("Match: " + line + " on line " + lineReader.getLineNumber());
     	          createViolation(lineReader.getLineNumber(), message);
     	        }
     	      }
