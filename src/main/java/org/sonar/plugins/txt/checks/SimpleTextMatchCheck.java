@@ -12,13 +12,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 
 @Rule(key = "SimpleRegexMatchCheck",
-      priority = Priority.MAJOR,
-      name = "Simple Regex Match", description = "Simple regular expression matcher.")
+      name = "Simple Regex Match",
+      description = "Simple regular expression matcher.",
+      tags = { "bad-practice" })
 public class SimpleTextMatchCheck extends AbstractTextCheck {
 
   @RuleProperty(key = "expression", type = "TEXT", defaultValue = "^some single-line.*regex search string$", description = "Don't try to match to newlines (\\r or \\n); consider using the Multiline check type if you have that need. This rule type evaluates your pattern against a single line of text at a time and uses java.io.LineNumberReader.readLine() to obtain that text. That method consumes new line information but does not return it.")

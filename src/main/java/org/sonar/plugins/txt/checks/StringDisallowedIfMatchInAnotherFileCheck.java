@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.plugins.txt.checks.util.FileIOUtil;
@@ -22,8 +21,9 @@ import org.sonar.plugins.txt.checks.util.LargeFileEncounteredException;
 import org.sonar.plugins.txt.checks.util.LineNumberFinderUtil;
 
 @Rule(key = "StringDisallowedIfMatchInAnotherFileCheck",
-      priority = Priority.MAJOR,
-      name = "String disallowed if a match was found in another file", description = "Checks for a 'trigger match' in one file. Only if that is present a second expression is checked against all files in the project and all matches cause an issue to be raised. Regex is applied in simple non-DOTALL mode / is single-line-based.")
+      name = "String disallowed if a match was found in another file",
+      description = "Checks for a 'trigger match' in one file. Only if that is present a second expression is checked against all files in the project and all matches cause an issue to be raised. Regex is applied in simple non-DOTALL mode / is single-line-based.",
+      tags = { "bad-practice" })
 public class StringDisallowedIfMatchInAnotherFileCheck extends AbstractCrossFileCheck {
   private static final Logger LOG = LoggerFactory.getLogger(StringDisallowedIfMatchInAnotherFileCheck.class);
   protected static final int MAX_CHARACTERS_SCANNED = 500001;

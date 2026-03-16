@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.plugins.txt.checks.util.FileIOUtil;
@@ -15,8 +14,9 @@ import org.sonar.plugins.txt.checks.util.LargeFileEncounteredException;
 import org.sonar.plugins.txt.checks.util.LineNumberFinderUtil;
 
 @Rule(key = "RequiredStringNotPresentRegexMatchCheck",
-      priority = Priority.MAJOR,
-      name = "Required String not Present", description = "Allows you to enforce \"When string 'A' is present string 'B' must also be present\". Raises an issue when text in the file matches to some 'trigger' regular expression but none match to a 'must exist' regular expression. The regular expression evaluation uses Java's Pattern.DOTALL option so '.*' will match past newline characters. Note that ^ and $ character matching is to beginning and end of file UNLESS you start your expression with (?m).")
+      name = "Required String not Present",
+      description = "Allows you to enforce \"When string 'A' is present string 'B' must also be present\". Raises an issue when text in the file matches to some 'trigger' regular expression but none match to a 'must exist' regular expression. The regular expression evaluation uses Java's Pattern.DOTALL option so '.*' will match past newline characters. Note that ^ and $ character matching is to beginning and end of file UNLESS you start your expression with (?m).",
+      tags = { "bad-practice" })
 public class RequiredStringNotPresentCheck extends AbstractTextCheck {
   private static final Logger LOG = LoggerFactory.getLogger(AbstractTextCheck.class);
 

@@ -3,7 +3,6 @@ package org.sonar.plugins.txt.checks;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.plugins.txt.checks.util.FileIOUtil;
@@ -11,8 +10,9 @@ import org.sonar.plugins.txt.checks.util.LargeFileEncounteredException;
 import org.sonar.plugins.txt.checks.util.LineNumberFinderUtil;
 
 @Rule(key = "MultilineTextMatchCheck",
-      priority = Priority.MAJOR,
-      name = "Multiline Regex Check", description = "Multiline (Java Match.DOTALL) regular expression matcher. Scans only text files containing less than " + (MultilineTextMatchCheck.MAX_CHARACTERS_SCANNED-1) + " characters. Note that ^ and $ character matching is to beginning and end of file UNLESS you start your expression with (?m).")
+      name = "Multiline Regex Check",
+      description = "Multiline (Java Match.DOTALL) regular expression matcher. Scans only text files containing less than " + (MultilineTextMatchCheck.MAX_CHARACTERS_SCANNED-1) + " characters. Note that ^ and $ character matching is to beginning and end of file UNLESS you start your expression with (?m).",
+      tags = { "bad-practice" })
 public class MultilineTextMatchCheck extends AbstractTextCheck {
   @RuleProperty(key = "regularExpression", type = "TEXT", defaultValue = "(?m)^some.*regex search string\\. dot matches all$")
   private String searchRegularExpression;
