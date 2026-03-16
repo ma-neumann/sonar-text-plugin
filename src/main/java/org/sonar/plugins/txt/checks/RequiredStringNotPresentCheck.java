@@ -26,8 +26,8 @@ public class RequiredStringNotPresentCheck extends AbstractTextCheck {
   @RuleProperty(key = "mustExistRegularExpression", type = "TEXT", defaultValue = "(?m)^some.*regex search string$")
   private String mustExistExpression;
 
-  @RuleProperty(key = "filePattern", defaultValue = "**/*.properties", description = "Ant Style path expression. To include all of the files in this project use '**/*'. \n\nFiles scanned will be limited by the list of file extensions configured for this language AND by the values of 'sonar.sources' and 'sonar.exclusions'. Also, using just 'filename.txt' here to point the rule to a file at the root of the project does not appear to work (as of SQ v4.5.5). Use '**/filename.txt' instead.")
-  private String filePattern;
+  @RuleProperty(key = "filePattern", defaultValue = FILEPATTERN_DEFAULT, description = "Ant Style path expression. To include all of the files in this project use '**/*'. \n\nFiles scanned will be limited by the list of file extensions configured for this language AND by the values of 'sonar.sources' and 'sonar.exclusions'. Also, using just 'filename.txt' here to point the rule to a file at the root of the project does not appear to work (as of SQ v4.5.5). Use '**/filename.txt' instead.")
+  private String filePattern = FILEPATTERN_DEFAULT;
 
   @RuleProperty(
     key = "message")

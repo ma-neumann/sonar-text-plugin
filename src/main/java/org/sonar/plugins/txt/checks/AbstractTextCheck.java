@@ -10,6 +10,8 @@ import org.sonar.check.RuleProperty;
 
 public abstract class AbstractTextCheck {
 
+  protected static final String FILEPATTERN_DEFAULT = "**/*";
+
   private RuleKey ruleKey;
   private TextSourceFile textSourceFile;
 
