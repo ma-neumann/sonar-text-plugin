@@ -12,6 +12,9 @@ public abstract class AbstractTextCheck {
 
   protected static final String FILEPATTERN_DEFAULT = "**/*";
 
+  protected static final String MESSAGE_DEFAULT = "";
+  protected static final String MESSAGE_DESCRIPTION = "Reason explaining why this text has been matched.";
+
   private RuleKey ruleKey;
   private TextSourceFile textSourceFile;
 

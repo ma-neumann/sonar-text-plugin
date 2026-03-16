@@ -43,9 +43,8 @@ public class StringDisallowedIfMatchInAnotherFileCheck extends AbstractCrossFile
   @RuleProperty(key = "applyExpressionToOneLineOfTextAtATime", type = "BOOLEAN", defaultValue = "true", description = "Select this to feed the regular expression evaluator one line at a time. Uncheck it if your expression needs to 'see' multiple lines. When not checked only the first " + (MAX_CHARACTERS_SCANNED-1) + " characters of each file will be processed. Since: v0.8. Rules created from this template under pre-v0.8 plugin versions won't show this option and will default to 'true'.")
   private boolean applyExpressionToOneLineOfTextAtATime = true;
 
-  @RuleProperty(
-    key = "message")
-  private String message;
+  @RuleProperty(key = "message", description = MESSAGE_DESCRIPTION)
+  private String message = MESSAGE_DEFAULT;
 
   @Override
   public void validate(final Map<InputFile, List<CrossFileScanPrelimIssue>> crossFileChecksRawResults,
