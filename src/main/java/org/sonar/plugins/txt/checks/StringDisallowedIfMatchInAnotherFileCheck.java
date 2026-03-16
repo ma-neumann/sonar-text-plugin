@@ -40,7 +40,7 @@ public class StringDisallowedIfMatchInAnotherFileCheck extends AbstractCrossFile
   @RuleProperty(key = "disallowFilePattern", defaultValue = FILEPATTERN_DEFAULT, description = "Ant Style path expression. To include all of the files in this project use '**/*'. \n\nFiles scanned will be limited by the list of file extensions configured for this language AND by the values of 'sonar.sources' and 'sonar.exclusions'. Also, using just 'filename.txt' here to point the rule to a file at the root of the project does not appear to work (as of SQ v4.5.5). Use '**/filename.txt' instead.")
   private String disallowFilePattern = FILEPATTERN_DEFAULT;
 
-  @RuleProperty(type = "BOOLEAN", key = "applyExpressionToOneLineOfTextAtATime", defaultValue = "true", description = "Select this to feed the regular expression evaluator one line at a time. Uncheck it if your expression needs to 'see' multiple lines. When not checked only the first " + (MAX_CHARACTERS_SCANNED-1) + " characters of each file will be processed. Since: v0.8. Rules created from this template under pre-v0.8 plugin versions won't show this option and will default to 'true'.")
+  @RuleProperty(key = "applyExpressionToOneLineOfTextAtATime", type = "BOOLEAN", defaultValue = "true", description = "Select this to feed the regular expression evaluator one line at a time. Uncheck it if your expression needs to 'see' multiple lines. When not checked only the first " + (MAX_CHARACTERS_SCANNED-1) + " characters of each file will be processed. Since: v0.8. Rules created from this template under pre-v0.8 plugin versions won't show this option and will default to 'true'.")
   private boolean applyExpressionToOneLineOfTextAtATime = true;
 
   @RuleProperty(
