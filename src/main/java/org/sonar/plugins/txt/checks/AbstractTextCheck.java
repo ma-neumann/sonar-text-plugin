@@ -22,10 +22,10 @@ public abstract class AbstractTextCheck {
   private RuleKey ruleKey;
   private TextSourceFile textSourceFile;
 
-  @RuleProperty(key = "doNotFireForTheseProjectKeys", type = "TEXT", defaultValue = "", description = "Use to exclude certain projects from this rule. Sample RegEx patterns: '^someMavenGroupIdPrefix' or 'someArtifactIdEndingDenotingSpecialProjectsToBeExcludedFromRule$'")
+  @RuleProperty(key = "doNotFireForTheseProjectKeys", type = "TEXT", description = "Use to exclude certain projects from this rule. Sample RegEx patterns: '^someMavenGroupIdPrefix' or 'someArtifactIdEndingDenotingSpecialProjectsToBeExcludedFromRule$'")
   private String doNotFireForProjectKeysRegex;
 
-  @RuleProperty(key = "doNotFireForTheseFileNames", type = "TEXT", defaultValue = "", description = "Use to exclude certain file names from this rule. Sample RegEx pattern: '^(local\\.properties|README.txt)$'")
+  @RuleProperty(key = "doNotFireForTheseFileNames", type = "TEXT", description = "Use to exclude certain file names from this rule. Sample RegEx pattern: '^(local\\.properties|README.txt)$'")
   private String doNotFireForTheseFileNamesRegex;
 
   protected final void createViolation(final Integer linePosition, final String message) {
