@@ -27,7 +27,7 @@ public class TextSourceFile {
   }
 
   public String getLogicalPath() {
-    return inputFile.absolutePath();
+    return inputFile.relativePath();
   }
 
   public List<TextIssue> getTextIssues() {
@@ -36,6 +36,6 @@ public class TextSourceFile {
 
   @Override
   public String toString() {
-    return inputFile.absolutePath();
+    return inputFile.relativePath();
   }
 }
