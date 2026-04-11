@@ -51,6 +51,7 @@ public class TextIssueSensor implements Sensor {
   public void describe(SensorDescriptor descriptor) {
     descriptor.name("TextIssueSensor");
     descriptor.createIssuesForRuleRepositories(TextPlugin.REPOSITORY_KEY);
+    descriptor.processesHiddenFiles();
   }
 
   @Override
