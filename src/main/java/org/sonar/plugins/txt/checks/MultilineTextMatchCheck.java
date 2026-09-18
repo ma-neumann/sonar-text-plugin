@@ -11,11 +11,11 @@ import org.sonar.plugins.txt.checks.util.LineNumberFinderUtil;
 
 @Rule(key = "MultilineTextMatchCheck",
       name = "Multiline Regex Check",
-      description = "Multiline (Java Match.DOTALL) regular expression matcher. Scans only text files containing less than " + (MultilineTextMatchCheck.MAX_CHARACTERS_SCANNED-1) + " characters. Note that ^ and $ character matching is to beginning and end of file UNLESS you start your expression with (?m).",
+      description = "Multi-line (Java Match.DOTALL) regular expression matcher.",
       tags = { "bad-practice" })
 public class MultilineTextMatchCheck extends AbstractTextCheck {
-  @RuleProperty(key = "regularExpression", type = "TEXT", defaultValue = EXPRESSION_MULTILINE_DEFAULT)
-  private String searchRegularExpression;
+  @RuleProperty(key = "regularExpression", type = "TEXT", defaultValue = EXPRESSION_MULTILINE_DEFAULT, description = EXPRESSION_MULTILINE_DESCRIPTION)
+  private String expression;
 
   @RuleProperty(key = "filePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String filePattern = FILEPATTERN_DEFAULT;
@@ -24,7 +24,7 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
   private String message = MESSAGE_DEFAULT;
 
   public String getExpression() {
-    return searchRegularExpression;
+    return expression;
   }
 
   public String getFilePattern() {
@@ -36,7 +36,7 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
   }
 
   public void setSearchRegularExpression(final String expression) {
-    this.searchRegularExpression = expression;
+    this.expression = expression;
   }
 
   public void setFilePattern(final String filePattern) {
@@ -47,15 +47,13 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
     this.message = message;
   }
 
-  protected static final int MAX_CHARACTERS_SCANNED = 500001;
-
   @Override
   public void validate(final TextSourceFile textSourceFile, final String projectKey) {
     int lineNumberOfTriggerMatch = -1;
 
     setTextSourceFile(textSourceFile);
 
-    if (searchRegularExpression != null &&
+    if (expression != null &&
         isFileIncluded(filePattern) &&
         shouldFireForProject(projectKey) &&
         shouldFireOnFile(textSourceFile.getInputFile())
@@ -69,7 +67,7 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
         return;
       }
 
-      Pattern regexp = Pattern.compile(searchRegularExpression, Pattern.DOTALL);
+      Pattern regexp = Pattern.compile(expression, Pattern.DOTALL);
       Matcher matcher = regexp.matcher(entireFileAsString);
       if (matcher.find()) {
 //        System.out.println("Match: " + line + " on line " + lineReader.getLineNumber());

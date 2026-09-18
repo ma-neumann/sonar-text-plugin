@@ -17,11 +17,11 @@ import org.sonar.check.RuleProperty;
 
 @Rule(key = "SimpleRegexMatchCheck",
       name = "Simple Regex Match",
-      description = "Simple regular expression matcher.",
+      description = "Single-line regular expression matcher.",
       tags = { "bad-practice" })
 public class SimpleTextMatchCheck extends AbstractTextCheck {
 
-  @RuleProperty(key = "expression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT, description = "Don't try to match to newlines (\\r or \\n); consider using the multiline check type if you have that need.\n\nThis rule type evaluates your pattern against a single line of text at a time and uses java.io.LineNumberReader.readLine() to obtain that text.")
+  @RuleProperty(key = "expression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT, description = EXPRESSION_SINGLELINE_DESCRIPTION)
   private String expression;
 
   @RuleProperty(key = "filePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)

@@ -15,15 +15,15 @@ import org.sonar.plugins.txt.checks.util.LineNumberFinderUtil;
 
 @Rule(key = "RequiredStringNotPresentRegexMatchCheck",
       name = "Required String not Present",
-      description = "Allows you to enforce \"When string 'A' is present string 'B' must also be present\". Raises an issue when text in the file matches to some 'trigger' regular expression but none match to a 'must exist' regular expression. The regular expression evaluation uses Java's Pattern.DOTALL option so '.*' will match past newline characters. Note that ^ and $ character matching is to beginning and end of file UNLESS you start your expression with (?m).",
+      description = "Allows you to enforce \"When string 'A' is present string 'B' must also be present\". Raises an issue when text in the file matches to some 'trigger' regular expression but none match to a 'must exist' regular expression. Multi-line (Java Match.DOTALL) regular expression matcher.",
       tags = { "bad-practice" })
 public class RequiredStringNotPresentCheck extends AbstractTextCheck {
   private static final Logger LOG = LoggerFactory.getLogger(AbstractTextCheck.class);
 
-  @RuleProperty(key = "triggerRegularExpression", type = "TEXT", defaultValue = "(?m)^some.*regex search string$")
+  @RuleProperty(key = "triggerRegularExpression", type = "TEXT", defaultValue = EXPRESSION_MULTILINE_DEFAULT, description = EXPRESSION_MULTILINE_DESCRIPTION)
   private String triggerExpression;
 
-  @RuleProperty(key = "mustExistRegularExpression", type = "TEXT", defaultValue = "(?m)^some.*regex search string$")
+  @RuleProperty(key = "mustExistRegularExpression", type = "TEXT", defaultValue = EXPRESSION_MULTILINE_DEFAULT, description = EXPRESSION_MULTILINE_DESCRIPTION)
   private String mustExistExpression;
 
   @RuleProperty(key = "filePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
@@ -59,8 +59,6 @@ public class RequiredStringNotPresentCheck extends AbstractTextCheck {
   public void setMessage(final String message) {
     this.message = message;
   }
-
-  protected static final int MAX_CHARACTERS_SCANNED = 500001;
 
   @Override
   public void validate(final TextSourceFile textSourceFile, final String projectKey) {

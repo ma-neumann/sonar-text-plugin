@@ -22,25 +22,25 @@ import org.sonar.plugins.txt.checks.util.LineNumberFinderUtil;
 
 @Rule(key = "MultiFileIfOneStringExistsThenBothMustExistCheck",
       name = "If a string is present then another string must also be present (cross-file)",
-      description = "Checks for a 'trigger match' in one file. Only if that is present a second expression is checked against a defined set of files. If that other expression is not present in the project the triggering line of code will have an issue raised against it. Regex is applied in simple non-DOTALL mode / is single-line-based.",
+      description = "Checks for a 'trigger match' in one file. Only if that is present a second expression is checked against a defined set of files. If that other expression is not present in the project the triggering line of code will have an issue raised against it. Configurable single-line (Java non Match.DOTALL) or multi-line (Java Match.DOTALL) regular expression matcher.",
       tags = { "bad-practice" })
 public class MultiFileIfOneStringExistsThenBothMustExistCheck extends AbstractCrossFileCheck {
   private static final Logger LOG = LoggerFactory.getLogger(MultiFileIfOneStringExistsThenBothMustExistCheck.class);
   protected static final int MAX_CHARACTERS_SCANNED = 500001;
 
-  @RuleProperty(key = "triggerExpression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT)
+  @RuleProperty(key = "triggerExpression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT, description = EXPRESSION_SINLELINE_OR_MULTILINE_DESCRIPTION)
   private String triggerExpression;
 
   @RuleProperty(key = "triggerFilePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String triggerFilePattern = FILEPATTERN_DEFAULT;
 
-  @RuleProperty(key = "mustAlsoExistExpression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT)
+  @RuleProperty(key = "mustAlsoExistExpression", type = "TEXT", defaultValue = EXPRESSION_SINGLELINE_DEFAULT, description = EXPRESSION_SINLELINE_OR_MULTILINE_DESCRIPTION)
   private String mustAlsoExistExpression;
 
   @RuleProperty(key = "mustAlsoExistFilePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String mustAlsoExistFilePattern = FILEPATTERN_DEFAULT;
 
-  @RuleProperty(key = "applyExpressionToOneLineOfTextAtATime", type = "BOOLEAN", defaultValue = "true", description = "Select this to feed the regular expression evaluator one line at a time. Uncheck it if your expression needs to 'see' multiple lines. When not checked only the first " + (MAX_CHARACTERS_SCANNED-1) + " characters of each file will be processed.")
+  @RuleProperty(key = "applyExpressionToOneLineOfTextAtATime", type = "BOOLEAN", defaultValue = "true", description = EXPRESSION_SINLELINE_OR_MULTILINE_SELECTOR_DESCRIPTION)
   private boolean applyExpressionToOneLineOfTextAtATime = true;
 
   @RuleProperty(key = "message", type = "TEXT", description = MESSAGE_DESCRIPTION)
