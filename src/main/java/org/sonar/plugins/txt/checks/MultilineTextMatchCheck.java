@@ -20,6 +20,9 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
   @RuleProperty(key = "filePattern", type = "TEXT", defaultValue = FILEPATTERN_DEFAULT, description = FILEPATTERN_DESCRIPTION)
   private String filePattern = FILEPATTERN_DEFAULT;
 
+  @RuleProperty(key = "positiveMatch", type = "BOOLEAN", defaultValue = "true", description = "Positive matching if checked: i.e. raise issue if regex is matched in a file (on first line if multi-line match). Negative matching if unchecked: i.e. raise issue if regex is unmatched (one first line of file).")
+  private boolean positiveMatch = true;
+
   @RuleProperty(key = "message", type = "TEXT", description = MESSAGE_DESCRIPTION)
   private String message = MESSAGE_DEFAULT;
 
@@ -29,6 +32,10 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
 
   public String getFilePattern() {
     return filePattern;
+  }
+
+  public boolean getPositiveMatch() {
+    return positiveMatch;
   }
 
   public String getMessage() {
@@ -41,6 +48,10 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
 
   public void setFilePattern(final String filePattern) {
     this.filePattern = filePattern;
+  }
+
+  public void setPositiveMatch(final boolean positiveMatch) {
+    this.positiveMatch = positiveMatch;
   }
 
   public void setMessage(final String message) {
@@ -70,11 +81,17 @@ public class MultilineTextMatchCheck extends AbstractTextCheck {
       Pattern regexp = Pattern.compile(expression, Pattern.DOTALL);
       Matcher matcher = regexp.matcher(entireFileAsString);
       if (matcher.find()) {
+        if (positiveMatch) {
 //        System.out.println("Match: " + line + " on line " + lineReader.getLineNumber());
-        int positionOfMatchBegin = matcher.start();
+          int positionOfMatchBegin = matcher.start();
 //        int positionOfMatchEnd = matcher.end();
-        lineNumberOfTriggerMatch = LineNumberFinderUtil.countLines(entireFileAsString, positionOfMatchBegin);
-        createViolation(lineNumberOfTriggerMatch, message);
+          lineNumberOfTriggerMatch = LineNumberFinderUtil.countLines(entireFileAsString, positionOfMatchBegin);
+          createViolation(lineNumberOfTriggerMatch, message);
+        }
+      } else {
+        if (!positiveMatch) {
+          createViolation(1, message);
+        }
       }
 
     }
