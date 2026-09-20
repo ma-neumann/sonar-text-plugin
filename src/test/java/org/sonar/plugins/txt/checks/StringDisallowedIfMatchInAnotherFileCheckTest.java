@@ -186,7 +186,7 @@ public class StringDisallowedIfMatchInAnotherFileCheckTest extends AbstractCross
 
     when(checks.ruleKey(Mockito.isA(StringDisallowedIfMatchInAnotherFileCheck.class))).thenReturn(RuleKey.of(TextPlugin.REPOSITORY_KEY, "StringDisallowedIfMatchInAnotherFileCheck"));
 
-    sensor = new TextIssueSensor(fs, sensorContext, checkFactory);
+    sensor = new TextIssueSensor(checkFactory);
   }
 
 }

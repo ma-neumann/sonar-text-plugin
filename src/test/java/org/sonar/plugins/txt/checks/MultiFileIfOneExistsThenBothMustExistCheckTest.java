@@ -204,7 +204,7 @@ public class MultiFileIfOneExistsThenBothMustExistCheckTest extends AbstractCros
 
     when(checks.ruleKey(Mockito.isA(MultiFileIfOneStringExistsThenBothMustExistCheck.class))).thenReturn(RuleKey.of(TextPlugin.REPOSITORY_KEY, "MultiFileIfOneStringExistsThenBothMustExistCheck"));
 
-    sensor = new TextIssueSensor(fs, sensorContext, checkFactory);
+    sensor = new TextIssueSensor(checkFactory);
   }
 
 }

@@ -43,14 +43,12 @@ public class IssueSensorTest {
     private RuleKey dummyRuleKey = RuleKey.of("repoKey", "ruleKey");
 
     private SensorContextTester sensorContextTester;
-	  private DefaultFileSystem fs;
 	  private TextIssueSensor sensor;
 	  private AbstractTextCheck textCheckMock;
 
 	  @Before
 	  public void setUp() throws Exception {
 	    Files.createDirectories(tempFileSystemBaseDir.toPath());
-	    fs = new DefaultFileSystem(tempFileSystemBaseDir);
 	    sensorContextTester = SensorContextTester.create(tempFileSystemBaseDir);
 	  }
 
@@ -67,7 +65,7 @@ public class IssueSensorTest {
 	    Path sampleFilePath = Paths.get(tempFileSystemBaseDir.toString(), "setup.properties");
 	    FileUtils.write(sampleFilePath.toFile(), "asdf\nasdf2\nasdf3", StandardCharsets.UTF_8);
 
-      fs.add(FileTestUtils.createInputFile(sampleFilePath.toString()));
+	    sensorContextTester.fileSystem().add(FileTestUtils.createInputFile(sampleFilePath.toString()));
 
       Mockito.doAnswer(new Answer<Void>() {
         @Override
@@ -96,8 +94,8 @@ public class IssueSensorTest {
 	    // Setup
 
 	    // One of these will NOT be scanned due to an exception being encountered
-	    fs.add(createInputFile("setup.properties", TextPlugin.LANGUAGE_KEY));
-      fs.add(createInputFile("setup.properties2", TextPlugin.LANGUAGE_KEY));
+	    sensorContextTester.fileSystem().add(createInputFile("setup.properties", TextPlugin.LANGUAGE_KEY))
+              .add(createInputFile("setup.properties2", TextPlugin.LANGUAGE_KEY));
 
 	    final AtomicBoolean firstCall = new AtomicBoolean(true);
 
@@ -132,7 +130,7 @@ public class IssueSensorTest {
 			List<Object> checksList = Arrays.asList(new Object[] {textCheckMock});
 			when(checks.all()).thenReturn(checksList);
 
-      sensor = new TextIssueSensor(fs, sensorContextTester, checkFactory);
+      sensor = new TextIssueSensor(checkFactory);
     }
 
 	  private DefaultInputFile createInputFile(final String name, final String language) {
